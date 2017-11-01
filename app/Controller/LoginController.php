@@ -18,7 +18,7 @@ class LoginController extends AppController {
       }
 
       return $this->redirect(
-        ['controller' => 'admin', 'action' => 'main']
+        ['controller' => 'admin', 'action' => 'index']
     );
   }
 }
