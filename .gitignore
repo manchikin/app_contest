@@ -28,3 +28,6 @@
 Icon?
 ehthumbs.db
 Thumbs.db
+
+/app/Config/core.php
+/app/Config/routes.php
