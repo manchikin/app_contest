@@ -1,9 +1,8 @@
 <?php
 class AdminController extends AppController {
 
-	public function login()
+	public function main()
 	{
-		debug($this->request->is('POST'));
-		debug($this->request->data);
+
 	}
 }
