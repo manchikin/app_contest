@@ -5,7 +5,6 @@ class AdminController extends AppController {
 
 	public function index()
 	{
-
 	}
 
   public function search()
@@ -22,15 +21,19 @@ class AdminController extends AppController {
 
   public function register()
   {
-    $this->User->set($this->request->data);
-    debug($this->User->validates());
-    debug($this->User->validationErrors);
+    
     $departments = $this->Department->find('list');
     $this->set(['departments' => $departments]);
+
     if (!$this->request->is('POST'))  return;
+    $this->User->set($this->request->data);
     
+    if (!$this->User->save($this->request->data)) return;
     
-    // debug($this->User->save($this->request->data));
+    $this->Session->setFlash('登録完了しました');
+    $this->redirect(['controller' => $this->name, 'action' => $this->action]);
+    
+    ;
   }
 
   public function change()

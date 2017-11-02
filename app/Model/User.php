@@ -1,27 +1,33 @@
 <?php
 App::uses('AppModel', 'Model');
 App::uses('AuthComponent', 'Controller/Component');
+App::uses('BlowfishPasswordHasher', 'Controller/Component/Auth');
 class User extends AppModel {
   public $validate = [
     'login_name' => [
-          "loginRule-1" => [
-            'rule' => 'notBlank',
-            'message' => '入力値が空です'  
+          "notBlank" => [
+            'rule'      => 'notBlank',
+            'message'   => MESSAGE_VL_ALL_001  
           ],
-          "loginRule-2" => [
-            'rule' => ['minLength', 5],
-            'message' => '最低5文字必要です'
+          "minLength" => [
+            'rule'      => ['minLength', 5],
+            'message'   => '最低5文字必要です'
           ],
-          "loginRule-3" => [
-            'rule' => ['maxLength', 24],
-            'message' => '最大24文字です'
+          "maxLength" => [
+            'rule'      => ['maxLength', 24],
+            'message'   => '最大24文字です'
+          ],
+          "isUnique" => [
+            'rule'      => 'isUnique',
+            'on'        => 'create',
+            'message'   => 'すでに使用しているユーザIDです'
           ],
           
     ],
     'password' => [
           "loginRule-1" => [
             'rule' => 'notBlank',
-            'message' => '入力値が空です'  
+            'message' => MESSAGE_VL_ALL_001 
           ],
           "loginRule-2" => [
             'rule' => ['minLength', 8],
@@ -35,18 +41,25 @@ class User extends AppModel {
     'department_id' => [
         "loginRule-1" => [
             'rule' => 'notBlank',
-            'message' => '入力値が空です'  
+            'message' => MESSAGE_VL_ALL_001 
           ],
     ],
     'confirm_password' => [
         "loginRule-1" => [
             'rule' => 'notBlank',
-            'message' => '入力値が空です'  
+            'message' => MESSAGE_VL_ALL_001 
           ],
         "loginRule-2" => [
           'rule' => ['confirmPassword', 'password'],
           'message' => '前に入力したパスワードと異なります'
         ],
+    ],
+    'user_name' => [
+        "loginRule-1" => [
+            'rule' => 'notBlank',
+            'message' => MESSAGE_VL_ALL_001
+          ],
+        
     ]
   ];
   
@@ -55,6 +68,7 @@ class User extends AppModel {
             'className' => 'Department',
         ],
   ];
+
   
   public function confirmPassword($check, $otherfield)
   {
@@ -68,4 +82,12 @@ class User extends AppModel {
 		debug($this->data[$this->name][$fname]);
 		return $this->data[$this->name][$otherfield] === $this->data[$this->name][$fname];
 	}
+	
+	public function beforeSave($options = array())
+	{
+    if (isset($this->data['User']['password'])) {
+        $this->data['User']['password'] = AuthComponent::password($this->data['User']['password']);
+    }
+    return true;
+  }
 }
