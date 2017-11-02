@@ -1,0 +1,4 @@
+[02-Nov-2017 13:35:57 UTC] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 29424864 bytes) in /home/ubuntu/workspace/cakephp/lib/Cake/Utility/Debugger.php on line 555
+[02-Nov-2017 13:43:19 UTC] PHP Parse error:  syntax error, unexpected ''fields'' (T_CONSTANT_ENCAPSED_STRING), expecting ']' in /home/ubuntu/workspace/cakephp/app/Controller/AppController.php on line 44
+[02-Nov-2017 13:43:19 UTC] PHP Fatal error:  Exception thrown without a stack frame in Unknown on line 0
+[02-Nov-2017 13:57:40 UTC] PHP Fatal error:  Class 'Object' not found in /home/ubuntu/workspace/cakephp/app/Plugin/DebugKit/Model/ToolbarAccess.php on line 22
