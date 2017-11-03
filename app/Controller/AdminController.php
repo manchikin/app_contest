@@ -57,11 +57,17 @@ class AdminController extends AppController {
     
     $this->set(['user'         => $user,
                 'isChangeable' => $isChangeable,
-                'changerId'    => $this->Auth->user('id'),
+                'Auth'    => $this->Auth->user(),
                 'departments'  => $this->_getDepartmentSelectList()
               ]);
     
     if ($this->request->data === []) return; // クエリパラメータも使用するため、is('POST')だとうまく動作しない
+    
+    if ($this->request->data['User']['is_deleting'] === '1') {
+      $this->User->delete($this->request->data('User.id'));
+      $this->redirect(['controller' => $this->name, 'action' => 'search']);
+    }
+    
     $this->User->set($this->request->data);
     if (!$this->User->validates(['fieldList' => $this->_getValidateFieldList($user)])) return;
     

@@ -12,11 +12,14 @@
                             'empty'   => '選択して下さい',
                             'default' => $user['User']['department_id']]);?>
                         
-    <?php if ($changerId === $user['User']['id']) : ?>
+    <?php if ($Auth['id'] === $user['User']['id']) : ?>
         <?= $this->Form->input('change_password', ['type' => 'checkbox', 'label' => 'パスワードを変更する']);?>
         <?= $this->Form->input('password');?>
         <?= $this->Form->input('confirm_password',[
                                 'type' => 'password']);?>
+    <?php endif; ?>
+    <?php if ($Auth['is_admin'] === true && $Auth['id'] !== $user['User']['id']) : ?>
+        <?= $this->Form->input('is_deleting', ['type' => 'checkbox', 'label' => '削除']);?>
     <?php endif; ?>
     <?= $this->Form->button('clear', ['type' => 'reset'])?>
     <?= $this->Form->end('Send');?>
