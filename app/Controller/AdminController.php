@@ -9,13 +9,17 @@ class AdminController extends AppController {
 
   public function search()
   {
-    if (!$this->request->is('POST'))  return;
+    
+    if (!$this->request->is('POST')) {
+      $this->set('users', $this->User->find('all'));
+      return;
+    }
 
     $users = $this->User->find('all',
                          ['conditions' => $this->request->data['User']['user_name'] === '' ? null : ['User.user_name LIKE' => '%' . $this->request->data['User']['user_name'] . '%'] 
                          ]);
     if (count($users) === 0) $this->Session->setFlash(str_replace("#01", 'ユーザ', MESSAGE_SEARCH_ALL_001));
-    $this->set(['isSearched' => true, 'users' => $users]);
+    $this->set(['users' => $users]);
 
   }
 
