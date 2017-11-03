@@ -61,6 +61,14 @@ class AdminController extends AppController {
                 'isChangeable' => $isChangeable,
                 'departments' => $this->_getDepartmentSelectList()
               ]);
+    if (!$this->request->data === []) return; // クエリパラメータも使用するため、is('POST')だとうまく動作しない
+    $updateResult = $this->User->updateAll([
+                            'User.user_name'     => "'".$this->request->data['User']['user_name']."'",
+                            'User.department_id' => $this->request->data['User']['department_id'],
+                          ],
+                          [ //conditions
+                            'User.id' => $this->request->data['User']['id']
+                          ]);
     
   }
   
