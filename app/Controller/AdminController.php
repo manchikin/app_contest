@@ -16,7 +16,7 @@ class AdminController extends AppController {
     }
 
     $users = $this->User->find('all',
-                         ['conditions' => $this->request->data['User']['user_name'] === '' ? null : ['User.user_name LIKE' => '%' . $this->request->data['User']['user_name'] . '%'] 
+                         ['conditions' => $this->request->data('User.user_name') === '' ? null : ['User.user_name LIKE' => '%' . $this->request->data('User.user_name') . '%'] 
                          ]);
     if (count($users) === 0) $this->Session->setFlash(str_replace("#01", 'ユーザ', MESSAGE_SEARCH_ALL_001));
     $this->set(['users' => $users]);
@@ -66,7 +66,7 @@ class AdminController extends AppController {
     
     if ($this->request->data === []) return; // クエリパラメータも使用するため、is('POST')だとうまく動作しない
     
-    if ($this->request->data['User']['is_deleting'] === '1') {
+    if ($this->request->data('User.is_deleting') === '1') {
       $this->User->delete($this->request->data('User.id'));
       $this->redirect(['controller' => $this->name, 'action' => 'search']);
     }
@@ -76,7 +76,7 @@ class AdminController extends AppController {
     
     $updateResult = $this->User->updateAll($this->_getUpdateFieldList(),
                           [ //conditions
-                            'User.id' => $this->request->data['User']['id']
+                            'User.id' => $this->request->data('User.id')
                           ]);
     
   }
@@ -115,11 +115,11 @@ class AdminController extends AppController {
   private function _getUpdateFieldList()
   {
     return array_merge([
-                            'User.user_name'     => "'".$this->request->data['User']['user_name']."'",
-                            'User.department_id' => $this->request->data['User']['department_id'],
+                            'User.user_name'     => "'".$this->request->data('User.user_name')."'",
+                            'User.department_id' => $this->request->data('User.department_id'),
                             'User.is_admin'      => $this->request->data('User.is_admin')
                         ],
-                        $this->_isChangingPassword() ? ['User.password' => "'".AuthComponent::password($this->request->data['User']['password'])."'"] : [] );
+                        $this->_isChangingPassword() ? ['User.password' => "'".AuthComponent::password($this->request->data('User.password'))."'"] : [] );
   }
   
  /**
@@ -130,7 +130,7 @@ class AdminController extends AppController {
    */
   private function _isChangingPassword()
   {
-    return ($this->request->data['User']['change_password'] ?? 0 ) === '1';
+    return ($this->request->data('User.change_password') ?? 0 ) === '1';
   }
   
   /**
