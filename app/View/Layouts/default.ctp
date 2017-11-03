@@ -25,10 +25,25 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 		<?php echo $cakeDescription ?>:
 		<?php echo $this->fetch('title'); ?>
 	</title>
+	
+	<!-- Tell the browser to be responsive to screen width -->
+	<?= $this->Html->meta('viewport', 'width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no');?>
+	<?= $this->Html->css('bootstrap.min');?>
+	<!-- Font Awesome -->
+	<?= $this->Html->css('font-awesome.min');?>
+	<!-- Ionicons -->
+	<?= $this->Html->css('ionicons.min');?>
+	<!-- Theme style -->
+	<?= $this->Html->css('AdminLTE.min');?>
+	<!-- AdminLTE Skins. We have chosen the skin-blue for this starter
+        page. However, you can choose any other skin. Make sure you
+        apply the skin class to the body tag so the changes take effect. -->
+    <?= $this->Html->css('skins/skin-blue.min');?>
+    <!-- Google Font -->
+    <?= $this->Html->css('https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic'); ?>
+    
 	<?php
 		echo $this->Html->meta('icon');
-
-		echo $this->Html->css('cake.generic');
 
 		echo $this->fetch('meta');
 		echo $this->fetch('css');
@@ -59,5 +74,15 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 			</p>
 		</div>
 	</div>
+
+<?php
+$this->start('adminLTE-js-embedded');
+echo $this->Html->script('jquery.min');
+echo $this->Html->script('bootstrap.min');
+echo $this->Html->script('adminlte.min');
+$this->end();
+?>
+
+<?= $this->fetch('adminLTE-js-embedded'); ?>
 </body>
 </html>
