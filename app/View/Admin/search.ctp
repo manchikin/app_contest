@@ -7,7 +7,7 @@
 
 <?= $this->Session->flash()?>
 
-<?php if ($is_searched ?? false) : ?>
+<?php if ($isSearched ?? false) : ?>
 <table>
 <?= $this->Html->tableHeaders(['#', 'login_id', '名前', '部署', ''])?>
 <?php foreach($users as $key => $user) : ?>

@@ -17,3 +17,7 @@
     
     // 完了メッセージ
     define("MESSAGE_FINISH_ALL_001",     '#01の#02が完了しました');
+    
+    // エラーメッセージ
+    define("MESSAGE_ERROR_ALL_001",     '存在しない#01です');
+    define("MESSAGE_ERROR_ALL_002",     'このページの閲覧権限がありません');

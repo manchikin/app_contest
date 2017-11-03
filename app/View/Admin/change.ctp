@@ -1,5 +1,6 @@
 変更画面
 <?= $this->Session->flash()?>
+<?php if ($isChangeable ?? false) : ?>
 <?= $this->Form->create('User',['novalidate' => true]);?>
 <?= $this->Form->input('login_name', ['defalut' => $user['User']['login_name']]);?>
 <?= $this->Form->input('user_name');?>
@@ -11,3 +12,4 @@
                         'type' => 'password']);?>
 <?= $this->Form->button('clear', ['type' => 'reset'])?>
 <?= $this->Form->end('Send');?>
+<?php endif; ?>

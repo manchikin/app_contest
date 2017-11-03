@@ -15,14 +15,14 @@ class AdminController extends AppController {
                          ['conditions' => $this->request->data['User']['user_name'] === '' ? null : ['User.user_name LIKE' => '%' . $this->request->data['User']['user_name'] . '%'] 
                          ]);
     if (count($users) === 0) $this->Session->setFlash(str_replace("#01", 'ユーザ', MESSAGE_SEARCH_ALL_001));
-    $this->set(['is_searched' => true, 'users' => $users]);
+    $this->set(['isSearched' => true, 'users' => $users]);
 
   }
 
   public function register()
   {
     
-    $this->_setDepartmentSelectList();
+    $this->set(['departments' => $this->_getDepartmentSelectList()]);
     
     if (!$this->request->is('POST'))  return;
     $this->User->set($this->request->data);
@@ -38,19 +38,54 @@ class AdminController extends AppController {
   public function change()
   {
     $user = $this->User->find('first',
-                         ['conditions' => ['User.id' => $this->request->query['id']]
+                         ['conditions' => ['User.id' => $this->request->query['id'],
+                                           'User.is_deleted' => false
+                                          ]
                          ]);
-  debug($user);
-    $this->_setDepartmentSelectList();
-    $this->set(['user' => $user]);
+
+    if ($user === []) {
+      // @TODO 存在しないIDがパラメータとして渡された場合
+      $this->Session->setFlash(str_replace("#01", 'ユーザ', MESSAGE_ERROR_ALL_001));
+      return;
+    }
+    
+  debug($this->Auth->user());
+  
+    $isChangeable = $this->_hasChangingRightOfOthers($user);
+    if (!$isChangeable) {
+      // 編集権限がない場合
+      $this->Session->setFlash(MESSAGE_ERROR_ALL_002);
+    }
+    
+    $this->set(['user' => $user,
+                'isChangeable' => $isChangeable,
+                'departments' => $this->_getDepartmentSelectList()
+              ]);
     
   }
   
-  private function _setDepartmentSelectList()
+  /**
+   * 該当ユーザの変更を行えるかどうか返却
+   * 管理者権限がある場合：true, ない場合：自分の変更のみtrue
+   * 
+   * @param  array $user
+   * @return bool
+   * 
+   */
+  private function _hasChangingRightOfOthers($user)
   {
-    $departments = $this->Department->find('list');
-    $this->set(['departments' => $departments]);
-
+    return $this->Auth->user('is_admin') || $this->Auth->user('id') === $user['User']['id'];
+  }
+  
+  /**
+   * ユーザ情報に使用する部署情報セレクトボックスのための配列をビューに設定する
+   * 
+   * @return array
+   * 
+   */
+  private function _getDepartmentSelectList()
+  {
+    return $this->Department->find('list');
   }
 
 }
