@@ -55,7 +55,9 @@ App::uses('Controller', 'Controller');
                                   ]
                               ]
                           ]]];
+                          
     public function beforeFilter() {
+        $this->set('Auth', $this->Auth->user());
     }
     
  }

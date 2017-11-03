@@ -61,7 +61,6 @@ class AdminController extends AppController {
     
     $this->set(['user'         => $user,
                 'isChangeable' => $isChangeable,
-                'Auth'    => $this->Auth->user(),
                 'departments'  => $this->_getDepartmentSelectList()
               ]);
     

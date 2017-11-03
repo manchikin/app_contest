@@ -12,3 +12,25 @@
 [02-Nov-2017 22:43:34 UTC] PHP Fatal error:  Constant expression contains invalid operations in /home/ubuntu/workspace/cakephp/app/Model/User.php on line 6
 [02-Nov-2017 22:43:59 UTC] PHP Fatal error:  Constant expression contains invalid operations in /home/ubuntu/workspace/cakephp/app/Model/User.php on line 6
 [02-Nov-2017 22:55:55 UTC] PHP Fatal error:  Constant expression contains invalid operations in /home/ubuntu/workspace/cakephp/app/Model/User.php on line 6
+[03-Nov-2017 05:45:18 UTC] PHP Fatal error:  Uncaught Error: Call to undefined method CakeErrorController::Auth() in /home/ubuntu/workspace/cakephp/app/Controller/AppController.php:60
+Stack trace:
+#0 /home/ubuntu/workspace/cakephp/lib/Cake/Event/CakeEventManager.php(243): AppController->beforeFilter(Object(CakeEvent))
+#1 /home/ubuntu/workspace/cakephp/lib/Cake/Controller/Controller.php(677): CakeEventManager->dispatch(Object(CakeEvent))
+#2 /home/ubuntu/workspace/cakephp/lib/Cake/Error/ExceptionRenderer.php(158): Controller->startupProcess()
+#3 /home/ubuntu/workspace/cakephp/lib/Cake/Error/ExceptionRenderer.php(95): ExceptionRenderer->_getController(Object(Error))
+#4 /home/ubuntu/workspace/cakephp/lib/Cake/Error/ErrorHandler.php(126): ExceptionRenderer->__construct(Object(Error))
+#5 [internal function]: ErrorHandler::handleException(Object(Error))
+#6 {main}
+  thrown in /home/ubuntu/workspace/cakephp/app/Controller/AppController.php on line 60
+[03-Nov-2017 05:45:28 UTC] PHP Parse error:  syntax error, unexpected ';', expecting ',' or ')' in /home/ubuntu/workspace/cakephp/app/Controller/AppController.php on line 60
+[03-Nov-2017 05:45:28 UTC] PHP Fatal error:  Exception thrown without a stack frame in Unknown on line 0
+[03-Nov-2017 05:45:35 UTC] PHP Fatal error:  Uncaught Error: Call to undefined method CakeErrorController::Auth() in /home/ubuntu/workspace/cakephp/app/Controller/AppController.php:60
+Stack trace:
+#0 /home/ubuntu/workspace/cakephp/lib/Cake/Event/CakeEventManager.php(243): AppController->beforeFilter(Object(CakeEvent))
+#1 /home/ubuntu/workspace/cakephp/lib/Cake/Controller/Controller.php(677): CakeEventManager->dispatch(Object(CakeEvent))
+#2 /home/ubuntu/workspace/cakephp/lib/Cake/Error/ExceptionRenderer.php(158): Controller->startupProcess()
+#3 /home/ubuntu/workspace/cakephp/lib/Cake/Error/ExceptionRenderer.php(95): ExceptionRenderer->_getController(Object(Error))
+#4 /home/ubuntu/workspace/cakephp/lib/Cake/Error/ErrorHandler.php(126): ExceptionRenderer->__construct(Object(Error))
+#5 [internal function]: ErrorHandler::handleException(Object(Error))
+#6 {main}
+  thrown in /home/ubuntu/workspace/cakephp/app/Controller/AppController.php on line 60
