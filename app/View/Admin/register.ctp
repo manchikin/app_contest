@@ -1,4 +1,4 @@
-ログイン画面
+登録画面
 <?= $this->Session->flash()?>
 <?= $this->Form->create('User',['novalidate' => true]);?>
 <?= $this->Form->input('login_name');?>

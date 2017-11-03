@@ -9,7 +9,7 @@ class LoginController extends AppController {
   
   public function index()
   {
-    debug(str_replace('#01', 5, MESSAGE_VL_ALL_002));
+    
     $validator = $this->User->validator();
     unset($validator['login_name']['isUnique']);
 
