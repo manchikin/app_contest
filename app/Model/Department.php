@@ -1,12 +1,17 @@
 <?php
 App::uses('AppModel', 'Model');
 class Department extends AppModel {
-    public $validate = [
-    'name' => [
-        'loginRule-1' => [
-          'rule' => 'alphaNumeric',
+    
+    public function __construct()
+  {
+    parent::__construct();
+    $this->validator()
+    ->add('name', [
+        'require' => [
+          'rule' => 'notBlank',
           'allowEmpty' => false,
-          'message' => '入力値が空です'
+          'message' => MESSAGE_VALIDATION_ALL_001
         ]
-    ]];
+    ]);
+  }
 }

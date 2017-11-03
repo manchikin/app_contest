@@ -4,63 +4,9 @@ App::uses('AuthComponent', 'Controller/Component');
 App::uses('BlowfishPasswordHasher', 'Controller/Component/Auth');
 class User extends AppModel {
   public $validate = [
-    'login_name' => [
-          "notBlank" => [
-            'rule'      => 'notBlank',
-            'message'   => MESSAGE_VL_ALL_001  
-          ],
-          "minLength" => [
-            'rule'      => ['minLength', 5],
-            'message'   => '最低5文字必要です'
-          ],
-          "maxLength" => [
-            'rule'      => ['maxLength', 24],
-            'message'   => '最大24文字です'
-          ],
-          "isUnique" => [
-            'rule'      => 'isUnique',
-            'on'        => 'create',
-            'message'   => 'すでに使用しているユーザIDです'
-          ],
-          
-    ],
-    'password' => [
-          "loginRule-1" => [
-            'rule' => 'notBlank',
-            'message' => MESSAGE_VL_ALL_001 
-          ],
-          "loginRule-2" => [
-            'rule' => ['minLength', 8],
-            'message' => '最低8文字必要です'
-          ],
-          "loginRule-3" => [
-            'rule' => ['maxLength', 24],
-            'message' => '最大24文字です'
-          ],
-    ],
-    'department_id' => [
-        "loginRule-1" => [
-            'rule' => 'notBlank',
-            'message' => MESSAGE_VL_ALL_001 
-          ],
-    ],
-    'confirm_password' => [
-        "loginRule-1" => [
-            'rule' => 'notBlank',
-            'message' => MESSAGE_VL_ALL_001 
-          ],
-        "loginRule-2" => [
-          'rule' => ['confirmPassword', 'password'],
-          'message' => '前に入力したパスワードと異なります'
-        ],
-    ],
-    'user_name' => [
-        "loginRule-1" => [
-            'rule' => 'notBlank',
-            'message' => MESSAGE_VL_ALL_001
-          ],
-        
-    ]
+    
+    
+    
   ];
   
   public $belongsTo = [
@@ -68,7 +14,64 @@ class User extends AppModel {
             'className' => 'Department',
         ],
   ];
-
+  
+  public function __construct()
+  {
+    parent::__construct();
+    $this->validator()
+      ->add('login_name', [
+        "notBlank" => [
+            'rule'      => 'notBlank',
+            'message'   => MESSAGE_VALIDATION_ALL_001  
+          ],
+          "minLength" => [
+            'rule'      => ['minLength', 5],
+            'message'   => str_replace('#01', 5, MESSAGE_VALIDATION_ALL_002)
+          ],
+          "maxLength" => [
+            'rule'      => ['maxLength', 24],
+            'message'   => str_replace('#01', 24, MESSAGE_VALIDATION_ALL_003)
+          ],
+          "isUnique" => [
+            'rule'      => 'isUnique',
+            'on'        => 'create',
+            'message'   => str_replace('#01', 'ユーザID', MESSAGE_VALIDATION_ALL_004)
+          ],
+      ])
+      ->add('password', [
+        'required' => [
+          'rule'    => 'notBlank',
+          'message' => MESSAGE_VALIDATION_ALL_001
+        ],
+        'minLength' => [
+          'rule'    => ['minLength', 5],
+          'message' => str_replace('#01', 5, MESSAGE_VALIDATION_ALL_002)
+        ],
+      ])
+      ->add('department_id', [
+        "required" => [
+            'rule' => 'notBlank',
+            'message' => MESSAGE_VALIDATION_ALL_001 
+          ],
+      ])
+      ->add('confirm_password', [
+        "required" => [
+            'rule' => 'notBlank',
+            'message' => MESSAGE_VALIDATION_ALL_001 
+          ],
+        "same" => [
+          'rule' => ['confirmPassword', 'password'],
+          'message' => str_replace('#01', 'ユーザID', MESSAGE_VALIDATION_PWD_001)
+        ],
+      ])
+      ->add('user_name', [
+        "required" => [
+            'rule' => 'notBlank',
+            'message' => MESSAGE_VALIDATION_ALL_001
+          ],
+        
+    ]);
+  }
   
   public function confirmPassword($check, $otherfield)
   {
