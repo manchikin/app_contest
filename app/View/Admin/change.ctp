@@ -19,6 +19,8 @@
                                 'type' => 'password']);?>
     <?php endif; ?>
     <?php if ($Auth['is_admin'] === true && $Auth['id'] !== $user['User']['id']) : ?>
+        <?= $this->Form->input('is_admin', ['label'   => '管理者権限',
+                                            'default' => $user['User']['is_admin']]);?>
         <?= $this->Form->input('is_deleting', ['type' => 'checkbox', 'label' => '削除']);?>
     <?php endif; ?>
     <?= $this->Form->button('clear', ['type' => 'reset'])?>

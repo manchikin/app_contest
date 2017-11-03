@@ -116,7 +116,8 @@ class AdminController extends AppController {
   {
     return array_merge([
                             'User.user_name'     => "'".$this->request->data['User']['user_name']."'",
-                            'User.department_id' => $this->request->data['User']['department_id']
+                            'User.department_id' => $this->request->data['User']['department_id'],
+                            'User.is_admin'      => $this->request->data('User.is_admin')
                         ],
                         $this->_isChangingPassword() ? ['User.password' => "'".AuthComponent::password($this->request->data['User']['password'])."'"] : [] );
   }
