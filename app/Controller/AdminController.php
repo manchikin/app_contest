@@ -48,8 +48,6 @@ class AdminController extends AppController {
       $this->Session->setFlash(str_replace("#01", 'ユーザ', MESSAGE_ERROR_ALL_001));
       return;
     }
-    
-  debug($this->Auth->user());
   
     $isChangeable = $this->_hasChangingRightOfOthers($user);
     if (!$isChangeable) {
@@ -57,15 +55,17 @@ class AdminController extends AppController {
       $this->Session->setFlash(MESSAGE_ERROR_ALL_002);
     }
     
-    $this->set(['user' => $user,
+    $this->set(['user'         => $user,
                 'isChangeable' => $isChangeable,
-                'departments' => $this->_getDepartmentSelectList()
+                'changerId'    => $this->Auth->user('id'),
+                'departments'  => $this->_getDepartmentSelectList()
               ]);
-    if (!$this->request->data === []) return; // クエリパラメータも使用するため、is('POST')だとうまく動作しない
-    $updateResult = $this->User->updateAll([
-                            'User.user_name'     => "'".$this->request->data['User']['user_name']."'",
-                            'User.department_id' => $this->request->data['User']['department_id'],
-                          ],
+    
+    if ($this->request->data === []) return; // クエリパラメータも使用するため、is('POST')だとうまく動作しない
+    $this->User->set($this->request->data);
+    if (!$this->User->validates(['fieldList' => $this->_getValidateFieldList($user)])) return;
+    
+    $updateResult = $this->User->updateAll($this->_getUpdateFieldList(),
                           [ //conditions
                             'User.id' => $this->request->data['User']['id']
                           ]);
@@ -76,13 +76,51 @@ class AdminController extends AppController {
    * 該当ユーザの変更を行えるかどうか返却
    * 管理者権限がある場合：true, ない場合：自分の変更のみtrue
    * 
-   * @param  array $user
+   * @param  array $user 編集対象のユーザフォーム情報
    * @return bool
    * 
    */
   private function _hasChangingRightOfOthers($user)
   {
     return $this->Auth->user('is_admin') || $this->Auth->user('id') === $user['User']['id'];
+  }
+  
+  /**
+   * バリデーション対象項目の配列を返却する
+   * 
+   * @return array
+   * 
+   */
+  private function _getValidateFieldList()
+  {
+    return array_merge(['user_name', 'department_id'], $this->_isChangingPassword() === '1' ? ['password', 'confirm_password'] : []); 
+  }
+  
+  
+ /**
+   * バリデーション対象項目の配列を返却する
+   * 
+   * @return array
+   * 
+   */
+  private function _getUpdateFieldList()
+  {
+    return array_merge([
+                            'User.user_name'     => "'".$this->request->data['User']['user_name']."'",
+                            'User.department_id' => $this->request->data['User']['department_id']
+                        ],
+                        $this->_isChangingPassword() ? ['User.password' => "'".AuthComponent::password($this->request->data['User']['password'])."'"] : [] );
+  }
+  
+ /**
+   * パスワードの変更を要求されているかどうかを返却する
+   * 
+   * @return bool
+   * 
+   */
+  private function _isChangingPassword()
+  {
+    return ($this->request->data['User']['change_password'] ?? 0 ) === '1';
   }
   
   /**
