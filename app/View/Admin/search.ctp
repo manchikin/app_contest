@@ -7,6 +7,16 @@
 
 <?= $this->Session->flash()?>
 
+
+<?php $this->paginator->options(['url' => $this->request->query]);?>
+<?= $this->Paginator->first('|<');?>　
+<?= $this->Paginator->prev('<< ' , [],  null, ['class' => 'prev disabled']);?>
+<?= $this->Paginator->numbers(['first' => 'First page'])?>
+<?= $this->Paginator->next('>> ' , [],  null, ['class' => 'next disabled']);?>　
+<?= $this->Paginator->last('>|');?>
+<?= $this->Paginator->counter([
+    'format' => 'range'
+]);?>
 <table>
 <?= $this->Html->tableHeaders(['#', 'login_id', '名前', '部署', '権限'])?>
 <?php foreach($users as $key => $user) : ?>

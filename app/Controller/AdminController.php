@@ -1,6 +1,15 @@
 <?php
 class AdminController extends AppController {
 
+  public $components = ['Paginator'];
+  public $paginate = [
+        'limit' => 5,
+        'order' => [
+            'User.name' => 'asc'
+        ],
+        'paramType' => 'querystring'
+    ];
+
   public $uses = ['User', 'Department'];
 
 	public function index()
@@ -9,16 +18,16 @@ class AdminController extends AppController {
 
   public function search()
   {
+    if ($this->request->is('POST')) {
+      $this->request->query['user_name'] = $this->request->data('User.user_name');  
+    } 
     
-    if (!$this->request->is('POST')) {
-      $this->set('users', $this->User->find('all'));
-      return;
-    }
-
-    $users = $this->User->find('all',
-                         ['conditions' => $this->request->data('User.user_name') === '' ? null : ['User.user_name LIKE' => '%' . $this->request->data('User.user_name') . '%'] 
-                         ]);
-    if (count($users) === 0) $this->Session->setFlash(sprintf(MESSAGE_SEARCH_ALL_001, 'ユーザ'));
+    $this->Paginator->settings = $this->paginate;
+    
+    $users = $this->Paginator->paginate('User',
+      ['User.user_name LIKE' => '%' . ($this->request->query['user_name'] ?? '') . '%'] 
+    );
+    
     $this->set(['users' => $users]);
 
   }
