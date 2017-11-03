@@ -26,16 +26,16 @@ class User extends AppModel {
           ],
           "minLength" => [
             'rule'      => ['minLength', 5],
-            'message'   => str_replace('#01', 5, MESSAGE_VALIDATION_ALL_002)
+            'message'   => sprintf(MESSAGE_VALIDATION_ALL_002, 5)
           ],
           "maxLength" => [
             'rule'      => ['maxLength', 24],
-            'message'   => str_replace('#01', 24, MESSAGE_VALIDATION_ALL_003)
+            'message'   => sprintf(MESSAGE_VALIDATION_ALL_003, 24)
           ],
           "isUnique" => [
             'rule'      => 'isUnique',
             'on'        => 'create',
-            'message'   => str_replace('#01', 'ユーザID', MESSAGE_VALIDATION_ALL_004)
+            'message'   => sprintf(MESSAGE_VALIDATION_ALL_004, 'ユーザID')
           ],
       ])
       ->add('password', [
@@ -45,7 +45,7 @@ class User extends AppModel {
         ],
         'minLength' => [
           'rule'    => ['minLength', 5],
-          'message' => str_replace('#01', 5, MESSAGE_VALIDATION_ALL_002)
+          'message' => sprintf(MESSAGE_VALIDATION_ALL_002, 5)
         ],
       ])
       ->add('department_id', [
@@ -61,7 +61,7 @@ class User extends AppModel {
           ],
         "same" => [
           'rule' => ['confirmPassword', 'password'],
-          'message' => str_replace('#01', 'ユーザID', MESSAGE_VALIDATION_PWD_001)
+          'message' => sprintf(MESSAGE_VALIDATION_PWD_001, 'ユーザID')
         ],
       ])
       ->add('user_name', [

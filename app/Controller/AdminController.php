@@ -18,7 +18,7 @@ class AdminController extends AppController {
     $users = $this->User->find('all',
                          ['conditions' => $this->request->data('User.user_name') === '' ? null : ['User.user_name LIKE' => '%' . $this->request->data('User.user_name') . '%'] 
                          ]);
-    if (count($users) === 0) $this->Session->setFlash(str_replace("#01", 'ユーザ', MESSAGE_SEARCH_ALL_001));
+    if (count($users) === 0) $this->Session->setFlash(sprintf(MESSAGE_SEARCH_ALL_001, 'ユーザ'));
     $this->set(['users' => $users]);
 
   }
@@ -33,7 +33,7 @@ class AdminController extends AppController {
     
     if (!$this->User->save($this->request->data)) return;
     
-    $this->Session->setFlash(str_replace(["#01", "#02"], ['ユーザ', '登録'], MESSAGE_FINISH_ALL_001));
+    $this->Session->setFlash(sprintf(MESSAGE_FINISH_ALL_001, $this->request->data('User.user_name') . "さん", '登録'));
     $this->redirect(['controller' => $this->name, 'action' => $this->action]);
     
     ;
@@ -78,6 +78,7 @@ class AdminController extends AppController {
                           [ //conditions
                             'User.id' => $this->request->data('User.id')
                           ]);
+    $this->Session->setFlash(sprintf(MESSAGE_FINISH_ALL_001, 'ユーザ情報', '変更'));
     
   }
   
