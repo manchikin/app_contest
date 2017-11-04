@@ -58,6 +58,13 @@ App::uses('Controller', 'Controller');
                           
     public function beforeFilter() {
         $this->set('Auth', $this->Auth->user());
+        switch ($this->name) {
+            case 'Login':
+                $this->layout = 'layout_login';
+                break;
+            default :
+                
+        }
     }
     
  }
