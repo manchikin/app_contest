@@ -42,7 +42,7 @@ class AdminController extends AppController {
 
     if (!$this->User->save($this->request->data)) return;
 
-    $this->Session->setFlash(sprintf(MESSAGE_FINISH_ALL_001, $this->request->data('User.user_name') . "さん", '登録'));
+    $this->Flash->success(sprintf(MESSAGE_FINISH_ALL_001, $this->request->data('User.user_name') . "さん", '登録'));
     $this->redirect(['controller' => $this->name, 'action' => $this->action]);
 
     ;

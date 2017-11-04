@@ -15,10 +15,6 @@
                                       'class' => "btn btn-sm btn-info btn-flat", 'div' => false]);?>
         </div>
 
-    </div>
-</div>
-<div class="box box-primary">
-     <div class="box-body no-padding">
         <?= $this->Session->flash()?>
 
 
