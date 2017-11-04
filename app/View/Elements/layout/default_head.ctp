@@ -21,7 +21,7 @@
   <?= $this->Html->css('//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic'); ?>
 
   <!-- 以下、自作CSS -->
-  <?= $this->Html->css('general/general_tmp2');?>
+  <?= $this->Html->css('general/general');?>
 
 
 	<?php

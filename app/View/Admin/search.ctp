@@ -1,7 +1,7 @@
 <?= $this->assign('title', TITLE_MEMBER_SEARCH)?>
 
 <div class="box box-primary">
-    <div class="box-header ui-sortable-handle" style="cursor: move;">
+    <div class="box-header ui-sortable-handle with-border" style="cursor: move;">
         <i class="ion ion-search"></i>
         <h3 class="box-title"><?= TITLE_MEMBER_SEARCH ?></h3>
     </div>
@@ -27,8 +27,8 @@
         <?= $this->Paginator->counter([
             'format' => 'range'
         ]);?>
-        <table class="table table-bordered">
-        <?= $this->Html->tableHeaders(['#', 'login_id', '名前', '部署', '権限'])?>
+        <table class="table table-bordered table-striped dataTable">
+        <?= $this->Html->tableHeaders(['#', 'login_id', '名前', '部署', '権限', ''])?>
         <?php foreach($users as $key => $user) : ?>
         <?= $this->Html->tableCells([$key + 1,
                                      $user['User']['login_name'],
