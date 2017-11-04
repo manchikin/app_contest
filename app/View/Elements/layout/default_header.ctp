@@ -1,23 +1,17 @@
 <header class="main-header">
-  <a href="<?= $this->Html->url(['conrtoller' => 'admin', 'action' => 'index']); ?>" class="logo">
+  <a href="<?= $this->Html->url(['controller' => 'admin', 'action' => 'index']); ?>" class="logo">
     <span class="logo-mini"><b>B</b>Ma</span>
     <span class="logo-lg"><b>Book</b>Manager</span>
   </a>
-  <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top">
-      <!-- Sidebar toggle button-->
       <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
+        <span class="sr-only">push to toggle</span>
         <span class="icon-bar"></span>
       </a>
-
+      <span class="header-page-title"><?= $this->fetch('title'); ?></span>
       <div class="navbar-custom-menu">
+
               <ul class="nav navbar-nav">
-                <li class="user-header">
-                </li>
-                <!-- User Account: style can be found in dropdown.less -->
                 <li class="dropdown user user-menu">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                     <i class="fa fa-user"></i><span ="hidden-xs"><?= $Auth['user_name']?></span>
@@ -38,7 +32,7 @@
                                                       ['class' => 'btn btn-default btn-flat']);?>
                       </div>
                       <div class="pull-right">
-                        <?= $this->Html->link('ログアウト', ['controller' => 'login', 'action' => 'logout'],
+                        <?= $this->Html->link(TITLE_LOGOUT, ['controller' => 'login', 'action' => 'logout'],
                                                            ['class' => 'btn btn-default btn-flat']);?>
                       </div>
                     </li>

@@ -1,7 +1,7 @@
 <head>
-	<?php echo $this->Html->charset(); ?>
+	<?= $this->Html->charset(); ?>
 	<title>
-		<?php echo $this->fetch('title'); ?>
+		<?= $this->fetch('title'); ?>
 	</title>
 
 	<!-- Tell the browser to be responsive to screen width -->

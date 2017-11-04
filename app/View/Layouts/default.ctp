@@ -10,9 +10,9 @@
           <section class="content container-fluid">
               <div id="content">
                 <div id="container">
-                  <?php echo $this->Flash->render(); ?>
+                  <?= $this->Flash->render(); ?>
 
-                  <?php echo $this->fetch('content'); ?>
+                  <?= $this->fetch('content'); ?>
                 </div>
               </div>
           </section>

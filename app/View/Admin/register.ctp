@@ -1,4 +1,4 @@
-登録画面
+<?= $this->assign('title', TITLE_MEMBER_ADD)?>
 <?= $this->Session->flash()?>
 <?= $this->Form->create('User',['novalidate' => true]);?>
 <?= $this->Form->input('login_name');?>

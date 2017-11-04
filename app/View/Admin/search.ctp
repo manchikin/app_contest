@@ -1,4 +1,4 @@
-会員検索<br>
+<?= $this->assign('title', TITLE_MEMBER_SEARCH)?>
 <?= $this->Form->create('User', ['novalidate' => true]);?>
 <?= $this->Form->input('user_name');?>
 <?= $this->Form->button('clear', ['type' => 'reset'])?>
@@ -28,7 +28,7 @@
                              $this->Html->link('変更', ['controller' => 'admin',
                                                         'action' => 'change',
                                                         '?' => ['id' => $user['User']['id']]]),
-                             
+
                              ]
                              ) ?>
 <?php endforeach; ?>
