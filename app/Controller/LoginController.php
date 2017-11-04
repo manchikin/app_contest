@@ -29,6 +29,7 @@ class LoginController extends AppController {
   public function logout()
   {
     $this->Auth->logout();
+    $this->redirect(['controller' => $this->name, 'action' => 'index']);
   }
 
 }

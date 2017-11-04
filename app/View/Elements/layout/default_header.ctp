@@ -8,7 +8,6 @@
         <span class="sr-only">push to toggle</span>
         <span class="icon-bar"></span>
       </a>
-      <span class="header-page-title"><?= $this->fetch('title'); ?></span>
       <div class="navbar-custom-menu">
 
               <ul class="nav navbar-nav">
