@@ -30,9 +30,9 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 	<?= $this->Html->meta('viewport', 'width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no');?>
 	<?= $this->Html->css('bootstrap.min');?>
 	<!-- Font Awesome -->
-	<?= $this->Html->css('font-awesome.min');?>
+	<?= $this->Html->css('font_awesome/css/font-awesome.min');?>
 	<!-- Ionicons -->
-	<?= $this->Html->css('ionicons.min');?>
+	<?= $this->Html->css('ionicons/css/ionicons.min');?>
 	<!-- Theme style -->
 	<?= $this->Html->css('AdminLTE.min');?>
 	<!-- AdminLTE Skins. We have chosen the skin-blue for this starter
@@ -40,7 +40,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
         apply the skin class to the body tag so the changes take effect. -->
     <?= $this->Html->css('skins/skin-blue.min');?>
     <!-- Google Font -->
-    <?= $this->Html->css('https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic'); ?>
+    <?= $this->Html->css('//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic'); ?>
     
 	<?php
 		echo $this->Html->meta('icon');
