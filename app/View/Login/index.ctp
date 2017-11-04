@@ -1,9 +1,9 @@
 
 <div class="login-box">
     <div class="login-logo">
-            システムタイトル
+            Book Manager
     </div>
-    <div class="login-box-body">
+    <div class="login-box-body clearfix">
         <?= $this->Session->flash()?>
         <?= $this->Form->create('User', ['novalidate' => true,
                                          'inputDefaults' => [
@@ -20,11 +20,8 @@
                                                 ]);?>
             <?= $this->Html->tag('span', '', ['class' => 'glyphicon glyphicon-lock form-control-feedback'])?>
         </div>
-        <?= $this->Html->div('col-xs-4 pull-left', '');?>
-        <?= $this->Form->input('ログイン', ['type'  => 'button',
-                                            'class' => 'btn btn-primary btn-block btn-flat',
-                                            'div'   => 'col-xs-4']); ?>
-        <?= $this->Html->div('col-xs-4 pull-right', '');?>
-        <?= $this->Form->end();?>
+        <?= $this->Form->end(['label' => 'Login',
+                              'class' => 'btn btn-primary btn-block btn-flat',
+                              'div' => ['class' => 'col-xs-4 col-xs-offset-4']]);?>
     </div>
 </div>
