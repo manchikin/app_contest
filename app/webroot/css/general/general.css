@@ -1,2 +1,13 @@
-.error-message { color:red; }
+.error-message {
+  color:red;
+}
+.error-message:before {
+  content: "\f06a";
+  font-family: FontAwesome;
+}
 .flash-error-message * { color:red; }
+.flash-error-message:before {
+  content: "\f00d";
+  font-family: FontAwesome;
+  color: red;
+}
