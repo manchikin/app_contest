@@ -48,7 +48,7 @@ class AdminController extends AppController {
     ;
   }
 
-  public function change()
+  public function edit()
   {
     $user = $this->User->find('first',
                          ['conditions' => ['User.id' => $this->request->query['id'],
@@ -58,14 +58,14 @@ class AdminController extends AppController {
 
     if ($user === []) {
       // @TODO 存在しないIDがパラメータとして渡された場合
-      $this->Session->setFlash(str_replace("#01", 'ユーザ', MESSAGE_ERROR_ALL_001));
+      $this->Flash->error(sprintf(MESSAGE_ERROR_ALL_001, CONST_USER_NAME));
       return;
     }
 
     $isChangeable = $this->_hasChangingRightOfOthers($user);
     if (!$isChangeable) {
       // 編集権限がない場合
-      $this->Session->setFlash(MESSAGE_ERROR_ALL_002);
+      $this->Flass->error(MESSAGE_ERROR_ALL_002);
     }
 
     $this->set(['user'         => $user,
@@ -87,7 +87,7 @@ class AdminController extends AppController {
                           [ //conditions
                             'User.id' => $this->request->data('User.id')
                           ]);
-    $this->Session->setFlash(sprintf(MESSAGE_FINISH_ALL_001, 'ユーザ情報', '変更'));
+    $this->Flash->success(sprintf(MESSAGE_FINISH_ALL_001, CONST_USER_NAME . '情報', '変更'));
 
   }
 

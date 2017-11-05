@@ -7,17 +7,17 @@
     <div class="box-body">
 
       <?= $this->Session->flash()?>
-      <?= $this->Form->create('User',['novalidate' => true]);?>
+      <?= $this->Form->create('User',['novalidate' => true, 'class' => 'form-horizontal']);?>
       <div class="form-group">
-        <?= $this->Form->label('login_name', 'ログインID', ['class' => "col-xs-2 control-label"]);?>
+        <?= $this->Form->label('login_name', CONST_LOGIN_ID, ['class' => "col-xs-2 control-label"]);?>
         <?= $this->Form->input('login_name', ['label' => false, 'class' => 'form-control', 'div' => 'col-xs-10']);?>
       </div>
       <div class="form-group">
-        <?= $this->Form->label('user_name', 'ユーザー名', ['class' => "col-xs-2 control-label"]);?>
+        <?= $this->Form->label('user_name', CONST_USER_NAME . "名", ['class' => "col-xs-2 control-label"]);?>
         <?= $this->Form->input('user_name', ['label' => false, 'class' => 'form-control', 'div' => 'col-xs-10']);?>
       </div>
       <div class="form-group">
-        <?= $this->Form->label('department_id', '部署名', ['class' => "col-xs-2 control-label"]);?>
+        <?= $this->Form->label('department_id', CONST_DEPARTMENT_NAME . "名", ['class' => "col-xs-2 control-label"]);?>
         <?= $this->Form->input('department_id',[
                                 'options' => [$departments],
                                 'empty'   => '選択して下さい',
@@ -26,11 +26,11 @@
                                 'div' => 'col-xs-10']);?>
       </div>
       <div class="form-group">
-        <?= $this->Form->label('password', 'パスワード', ['class' => "col-xs-2 control-label"]);?>
-      <?= $this->Form->input('password', ['label' => false, 'class' => 'form-control', 'div' => 'col-xs-10']);?>
+        <?= $this->Form->label('password', CONST_PASSWORD, ['class' => "col-xs-2 control-label"]);?>
+        <?= $this->Form->input('password', ['label' => false, 'class' => 'form-control', 'div' => 'col-xs-10']);?>
       </div>
       <div class="form-group">
-        <?= $this->Form->label('confirm_password', 'パスワード（確認）', ['class' => "col-xs-2 control-label"]);?>
+        <?= $this->Form->label('confirm_password', CONST_PASSWORD . '<br>（確認）', ['class' => "col-xs-2 control-label"]);?>
         <?= $this->Form->input('confirm_password',[
                                'type'  => 'password',
                                'label' => false,

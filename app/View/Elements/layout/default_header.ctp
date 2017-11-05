@@ -19,15 +19,16 @@
                     <!-- Menu Body -->
                     <li class="user-body">
                       <div class="row">
-                          <?= $this->Html->div('col-xs-4 text-right', "userID：") ?><?= $this->Html->div('col-xs-8', sprintf('%05d', $Auth['id'])) ?>
-                          <?= $this->Html->div('col-xs-4 text-right', "部署："  ) ?><?= $this->Html->div('col-xs-8', $Auth['Department']['name']) ?>
-                          <?= $this->Html->div('col-xs-4 text-right', "ロール：") ?><?= $this->Html->div('col-xs-8', $Auth['is_admin'] === true ? '管理者' : '一般') ?>
+                        <?= $this->Html->div('col-xs-5 text-right', CONST_USER_ID         . "：") ?><?= $this->Html->div('col-xs-7', sprintf('%05d', $Auth['id'])) ?>
+                        <?= $this->Html->div('col-xs-5 text-right', CONST_LOGIN_ID        . "：") ?><?= $this->Html->div('col-xs-7', $Auth['login_name']) ?>
+                        <?= $this->Html->div('col-xs-5 text-right', CONST_DEPARTMENT_NAME . "：") ?><?= $this->Html->div('col-xs-7', $Auth['Department']['name']) ?>
+                        <?= $this->Html->div('col-xs-5 text-right', CONST_ROLE            . "：") ?><?= $this->Html->div('col-xs-7', $Auth['is_admin'] === true ? CONST_ROLE_ADMIN : CONST_ROLE_COMMON) ?>
                       </div>
                       <!-- /.row -->
                     </li>
                     <li class="user-footer">
                       <div class="pull-left">
-                        <?= $this->Html->link('編集', ['controller' => 'admin', 'action' => 'change', '?' => ['id' => $Auth['id']]],
+                        <?= $this->Html->link('編集', ['controller' => 'admin', 'action' => 'edit', '?' => ['id' => $Auth['id']]],
                                                       ['class' => 'btn btn-default btn-flat']);?>
                       </div>
                       <div class="pull-right">

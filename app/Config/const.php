@@ -1,6 +1,17 @@
 <?php
     $config = []; // 設定しないとエラーとなるため削除しないこと（バグ？）
 
+    // 用語
+    define("CONST_USER_ID"        , 'ユーザID');
+    define("CONST_LOGIN_ID"       , 'ログインID');
+    define("CONST_USER_NAME"      , 'ユーザ');
+    define("CONST_PASSWORD"       , 'パスワード');
+    define("CONST_DEPARTMENT_NAME", '部署');
+    define("CONST_ROLE"           , '権限');
+    define("CONST_ROLE_ADMIN"     , '管理者');
+    define("CONST_ROLE_COMMON"    , '一般');
+
+
     // バリデーションメッセージ
 
     // 全般
@@ -22,10 +33,15 @@
     define("MESSAGE_ERROR_ALL_001",     '存在しない%sです');
     define("MESSAGE_ERROR_ALL_002",     'このページの閲覧権限がありません');
 
+    // ログイン失敗時
+    define("MESSAGE_ERROR_LOGIN_001", 'ログインIDもしくはパスワードが間違っています');
+
+
     // ページ名
     define("TITLE_DASHBOARD"    , "Dashboard");
     define("TITLE_MEMBER_SEARCH", "会員検索");
     define("TITLE_MEMBER_ADD"   , "会員登録");
+    define("TITLE_MEMBER_EDIT"  , "会員情報変更");
     define("TITLE_LOGOUT"       , "ログアウト");
     // フッター
     define("MESSAGE_FOOTER", 'prototype for the application contest@2017');

@@ -19,7 +19,7 @@ class LoginController extends AppController {
     if(!$this->User->validates()) return;
 
     if (!$this->Auth->login()) {
-      $this->Flash->error(__('Invalid username or password, try again'));
+      $this->Flash->error(__(MESSAGE_ERROR_LOGIN_001));
       return;
     }
 
