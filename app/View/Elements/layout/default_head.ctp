@@ -7,6 +7,7 @@
 	<!-- Tell the browser to be responsive to screen width -->
 	<?= $this->Html->meta(['name' => 'viewport', 'content' => 'width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no']);?>
 	<?= $this->Html->css('bootstrap/css/bootstrap.min');?>
+  <!-- <?= $this->Less->css('bootstrap/bootstrap') // LESS読み込みようだが、結局form-groupは読み込めずだったためコメントアウト ?> -->
 	<!-- Font Awesome -->
 	<?= $this->Html->css('font_awesome/css/font-awesome.min');?>
 	<!-- Ionicons -->

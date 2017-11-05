@@ -55,7 +55,8 @@ App::uses('Controller', 'Controller');
                                   ]
                               ]
                           ]]];
-
+    public $helpers = ['Less.Less'];
+    
     public function beforeFilter() {
         $this->set('Auth', $this->Auth->user());
         switch ($this->name) {
