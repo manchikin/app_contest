@@ -10,7 +10,7 @@
             <?= $this->Form->create('User', ['inputDefaults' => ['novalidate' => true, 'div' => false]]);?>
             <?= $this->Form->input('user_name', ['placeholder' => '名前', 'label' => false]);?>
             <?= $this->Form->button('リセット', ['type'  => 'reset',
-                                            'class' => "btn btn-sm btn-danger btn-flat",])?>
+                                            'class' => "btn btn-sm btn-default btn-flat",])?>
             <?= $this->Form->end(['label' => '検索',
                                       'class' => "btn btn-sm btn-info btn-flat", 'div' => false]);?>
         </div>
