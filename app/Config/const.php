@@ -10,6 +10,7 @@
     define("CONST_ROLE"           , '権限');
     define("CONST_ROLE_ADMIN"     , '管理者');
     define("CONST_ROLE_COMMON"    , '一般');
+    define("CONST_BOOK_NAME"      , '書籍');
 
 
     // バリデーションメッセージ
@@ -39,6 +40,8 @@
 
     // ページ名
     define("TITLE_DASHBOARD"    , "Dashboard");
+    define("TITLE_BOOK_MANAGE"  , "書籍管理");
+    define("TITLE_BOOK_SEARCH"  , "書籍検索");
     define("TITLE_MEMBER_SEARCH", "会員検索");
     define("TITLE_MEMBER_ADD"   , "会員登録");
     define("TITLE_MEMBER_EDIT"  , "会員情報変更");

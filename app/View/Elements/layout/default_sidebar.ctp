@@ -7,6 +7,11 @@
                                 ['controller' => 'admin', 'action' => 'index'],
                                 ['escape' => false]); ?>
           </li>
+          <li class="active">
+            <?= $this->Html->link('<i class="fa fa-book"></i><span>' . TITLE_BOOK_MANAGE . '</span>',
+                                ['controller' => 'book', 'action' => 'index'],
+                                ['escape' => false]); ?>
+          </li>
           <li class="active treeview menu-open">
             <a href="#">
               <i class="fa fa-users"></i> <span>会員情報</span>

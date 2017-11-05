@@ -113,3 +113,4 @@ CakeLog::config('error', array(
 CakePlugin::load('DebugKit');
 CakePlugin::load('Less');
 Configure::load('const');
+Configure::load('api_keys');
